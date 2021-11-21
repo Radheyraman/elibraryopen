@@ -29,7 +29,7 @@ SECRET_KEY = os.environ['ELIBRARYOPEN_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://elibraryopen.herokuapp.com/","localhost"]
+ALLOWED_HOSTS = ["elibraryopen.herokuapp.com","localhost"]
 
 
 # Application definition
