@@ -1,0 +1,71 @@
+{% extends 'basic.html' %}
+{% block title %} Elibrary {% endblock title %}
+{% block css %}
+    .elib{
+        {% comment %} margin-top: 29px; {% endcomment %}
+            display: flex;
+            justify-content: center;    
+    }
+    .elibcard{
+        display: flex;
+        flex-direction: column;
+        {% comment %} margin: 3px 71px; {% endcomment %}
+        width: 86%;
+        margin-top: 40px;
+    }
+    .bgimg{
+        height: 718px;
+    }
+    .card{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        height: 229px;
+        margin-bottom: 30px;
+    }
+    .ebookinfo{
+        margin-left: 39px;
+        width:80%;
+    }
+    .thumbnailimage{
+        width: 20%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        border-right: 1px solid rgba(0,0,0,.125);
+    }
+
+    .thumbnailimage img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .bgimg{
+        background-image: url("/media/Background.jpeg");
+        background-color: #cccccc ;
+    }
+    
+
+{% endblock css %}
+{% block body %}
+<div class="bgimg">
+    <div class="elib">
+        <div class="elibcard">
+        {% for i in ebooks %}
+            <div class="card" >
+                <div class="thumbnailimage">
+                    <img src='/media/{{i.Thumbnail}}' class="thumbnailbook" alt="{{i.bookname}}">
+                </div>
+                <div class="ebookinfo">
+                    <h5 class="Ebooktitle">{{i.bookname}}</h5>
+                    <h6 class="ebookauthoe">By {{i.bookauthor}}</h6>
+                    <p class="Ebookdesc">{{i.bookdesc|truncatechars:120}}</p>
+                    <a href="{{i.slug}}" class="ebookdownload btn btn-success">Free Download</a>
+                </div>
+                
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

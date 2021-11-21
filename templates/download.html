@@ -1,0 +1,65 @@
+{% extends 'basic.html' %}
+{% block title %}Download {{downloadbook.bookname}}{% endblock title %}
+{% block css %}
+
+    .downloadbok{
+        display: flex;
+        margin: 2% 13%;
+    }
+    .aboutbook{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .dwnlbk{
+        height: 682px;
+    }
+    .footerelibrary{
+        {% comment %} position: relative;
+        top: 454px; {% endcomment %}
+    }
+    .notexist{
+        width: 100%;
+        height: 510px;
+    }
+
+    .existno{
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+    }
+
+{% endblock css %}
+{% block body %}
+
+<main class="dwnlbk">
+    {% if downloadbook.slug %}
+    <div class="downloadbok">
+        <div class="aboutbook">
+            <div class="bookinfo">
+                <h4>{{downloadbook.bookname}}</h4>
+            </div>
+            <div class="bookcover">
+             
+                <img src="/media/{{downloadbook.Thumbnail}}" alt="">
+            
+            </div>
+            <div class="reviews">
+                <p>{{downloadbook.bookdesc}}</p>
+            </div>
+            <a href="{{downloadbook.book.url}}" download="{{downloadbok.book.url}}" class="ebookdownload btn btn-success">Free Download</a>
+        </div>
+    </div>
+    {% else %}
+        <div class="notexist">
+            <div class="existno">
+                <h1>This Page doesn't  exit.</h1>
+            
+            </div>
+        </div>
+    {% endif %}
+</main>
+
+{% endblock body %}

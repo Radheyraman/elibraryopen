@@ -1,0 +1,88 @@
+{% extends 'basic.html' %}
+{% block title %} {{search}}  {% endblock title %}
+{% block css %}
+
+    .search{
+        height: 580px;
+    }
+
+    .searchresult{
+        width: 100%;
+        height: 100%;
+    }
+    .srchbook{
+        margin: 0px 68px;
+        height: 93%;
+    
+    }
+    }
+    .resultbook{
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+    .thumbnail{
+        height: 250px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .thumbnail img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .bookrst{
+        display: flex;
+        flex-direction: column;
+        height: 340px;
+        border: 1px solid rgba(0,0,0,.125);    
+        width: 23%;
+
+    }
+
+    .bookinfo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+{% endblock css %}
+{% block body %}
+
+<div class="search">
+    <div class="searchresult">
+    
+        <div class="srchrst">
+            <h4>Search Results:- </h4>
+        </div>
+        {% if allbook|length < 1 %}
+        <div class="nosrchrsult">
+            <div class="noresult">
+                <h6>No search Results:- </h6>
+                <p> Your Search -- <b>{{search}}</b>  Did not match any book name ,author name/ Did Not Have these Book   </p>
+                <p>Please Try another Name of Book </p>
+            </div>
+        </div>
+        
+        {% endif %}
+        {% for i in allbook %}
+        <div class="srchbook">
+            <div class="resultbook">
+                <div class="bookrst">
+                    <div class="thumbnail">
+                        <img src="/media/{{i.Thumbnail}}" alt="#">
+                    </div>
+                    <div class="bookinfo">
+                        <h6>{{i.bookname}}</h6>
+                        <p>{{i.bookdesc|truncatechars:50}}</p>
+                    </div>
+                    <a href="{{i.slug}}" class="ebookdownload btn btn-success">Free Download</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock body %}
